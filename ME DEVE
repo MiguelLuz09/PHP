@@ -1,1 +1,114 @@
+<?php
+session_start();
+$contas = $_SESSION["contas"] ?? [];
 
+$TotalReceber = 0;
+$TotalPagar = 0;
+
+foreach ($contas as $conta) {
+
+    if ($conta["tipo"] == "Receber") {
+        $TotalReceber += $conta["valor"];
+    }
+
+    if ($conta["tipo"] == "Pagar") {
+        $TotalPagar += $conta["valor"];
+    }
+}
+$saldo = $TotalReceber - $TotalPagar;
+
+?>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ME DEVE</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="container mt-5">
+
+        <h1 class="text-center mb-4">Sistema ME DEVE</h1>
+        <div class="row text-center mb-4">
+
+            <div class="col-md-4">
+                <div class="card bg-success text-white p-3">
+                    <h5>Total a Receber</h5>
+                    <h3>R$ <?= $TotalReceber ?></h3>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card bg-danger text-white p-3">
+                    <h5>Total a Pagar</h5>
+                    <h3>R$ <?= $TotalPagar ?></h3>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card bg-dark text-white p-3">
+                    <h5>Saldo</h5>
+                    <h3>R$ <?= $saldo ?></h3>
+                </div>
+            </div>
+
+        </div>
+
+        <a href="NovaConta.php" class="btn btn-success mb-4">
+            + Nova Conta
+        </a>
+
+    </div>
+
+    <h3 class="text-success">Me Devem</h3>
+
+    <table class="table table-bordered table-striped mb-5">
+
+        <tr class="table-success">
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Valor</th>
+        </tr>
+
+        <?php foreach ($contas as $conta) {
+            if ($conta["tipo"] == "Receber") { ?>
+                <tr>
+                    <td><?= $conta["nome"] ?></td>
+                    <td><?= $conta["descricao"] ?></td>
+                    <td class="receber">R$ <?= $conta["valor"] ?></td>
+                </tr>
+            <?php }
+        } ?>
+
+        <h3 class="text-danger">Eu Devo</h3>
+
+        <table class="table table-bordered table-striped">
+
+            <tr class="table-danger">
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Valor</th>
+            </tr>
+
+            <?php foreach ($contas as $conta) {
+                if ($conta["tipo"] == "Pagar") { ?>
+                    <tr>
+                        <td><?= $conta["nome"] ?></td>
+                        <td><?= $conta["descricao"] ?></td>
+                        <td class="pagar">R$ <?= $conta["valor"] ?></td>
+                    </tr>
+                <?php }
+            } ?>
+
+        </table>
+    </table>
+
+</body>
+
+</html>
