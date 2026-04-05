@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: whitesmoke;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border: 1px solid #ccc;
+}
+
+th {
+    background-color: #333;
+    color: white;
+}
+
+tr:hover {
+    background-color: #eee;
+}
+
+th,
+td {
+    border: 1px solid #ccc;
+}
+
+td {
+    padding: 10px;
+    text-align: center;
+}
+
+.pagar {
+    color: red !important;
+    font-weight: bold;
+}
+
+.receber {
+    color: green !important;
+    font-weight: bold;
+}
