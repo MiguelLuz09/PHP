@@ -34,7 +34,7 @@ $saldo = $TotalReceber - $TotalPagar;
 
     <div class="container mt-5">
 
-        <h1 class="text-center mb-4">Sistema ME DEVE</h1>
+        <h1 class="text-center mb-4">🪙Sistema ME DEVE🪙</h1>
         <div class="row text-center mb-4">
 
             <div class="col-md-4">
